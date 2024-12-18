@@ -144,7 +144,7 @@ router.put('/update', async (req, res) => {
             return res.status(404).json({ error: "User not found" });
         }
 
-        existingUser.firstName = req.body.firstName;
+        existingUser.firstName = req.body.name;
         existingUser.updatedAt = new Date();
 
         // Task 6: Update the user credentials in the database
