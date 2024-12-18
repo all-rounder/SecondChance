@@ -56,6 +56,7 @@ router.post('/', upload.single('file'), async(req, res,next) => {
 
         //Step 3: task 3 - insert code here
         let secondChanceItem = req.body;
+        
 
         //Step 3: task 4 - insert code here
         const lastItemQuery = await collection.find().sort({'id': -1}).limit(1);
@@ -66,9 +67,11 @@ router.post('/', upload.single('file'), async(req, res,next) => {
         //Step 3: task 5 - insert code here
         const date_added = Math.floor(new Date().getTime() / 1000);
         secondChanceItem.date_added = date_added
+        console.log(secondChanceItem);
 
         //Step 3: task 6
         secondChanceItem = await collection.insertOne(secondChanceItem);
+        console.log("inserted one record");
 
         res.status(201).json(secondChanceItem.ops[0]);
     } catch (e) {
@@ -86,6 +89,7 @@ router.get('/:id', async (req, res, next) => {
         const collection = db.collection("secondChanceItems");
 
         //Step 4: task 3 - insert code here
+        const id = req.params.id;
         const secondChanceItem = await collection.findOne({ id: id });
 
         //Step 4: task 4 - insert code here
@@ -110,6 +114,7 @@ router.put('/:id', async(req, res,next) => {
         const collection = db.collection("secondChanceItems");
 
         //Step 5: task 3 - insert code here
+        const id = req.params.id;
         const secondChanceItem = await collection.findOne({ id });
 
         if (!secondChanceItem) {
@@ -153,6 +158,7 @@ router.delete('/:id', async(req, res,next) => {
         const collection = db.collection("secondChanceItems");
 
         //Step 6: task 3 - insert code here
+        const id = req.params.id;
         const secondChanceItem = await collection.findOne({ id });
 
         if (!secondChanceItem) {
